@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
 
+class Player {
+  // String 뒤에 ?를 붙여주면 아무 파라미터 없이도 생성자 함수를 만들 수 있음
+  String? name;
+
+  // 파라미터를 받지 않는 생성자 함수
+  // Player({});
+
+  // named parameter 사용 <- appBar, home 등과 비슷
+  Player({required this.name});
+}
+
 // 1. runApp에 새로운 App class 넣기
 void main() {
+  var kiji = Player(name: 'kiji');
   runApp(MyApp());
 }
 
