@@ -27,14 +27,44 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       // 6. home 프로퍼티 설정
       home: Scaffold(
-        // 8. scaffold widget을 사용해 화면 구성
-        appBar: AppBar(
-          title: const Text('Hello flutter!'),
-        ),
-        body: const Center(
-          child: Text('Hello World!'),
-        ), // 7. Text를 전달
-      ),
+          // 8. scaffold widget을 사용해 화면 구성
+          backgroundColor: Color(0xFF181818), // custom color
+          body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 40), // 수평 방향으로 여백 넣기
+            child: Column(children: [
+              // 여백 공간 넣기
+              SizedBox(
+                height: 80,
+              ),
+              Row(
+                // 수평 방향 정렬
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        'Hey, Selena',
+                        // text styling
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 28,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      Text(
+                        'Welcome back',
+                        style: TextStyle(
+                          color: Colors.white.withOpacity(0.5),
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ]),
+          )),
     );
   }
 }
