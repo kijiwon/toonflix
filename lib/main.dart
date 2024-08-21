@@ -30,40 +30,67 @@ class MyApp extends StatelessWidget {
           // 8. scaffold widget을 사용해 화면 구성
           backgroundColor: Color(0xFF181818), // custom color
           body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 40), // 수평 방향으로 여백 넣기
-            child: Column(children: [
-              // 여백 공간 넣기
-              SizedBox(
-                height: 80,
-              ),
-              Row(
-                // 수평 방향 정렬
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Hey, Selena',
-                        // text styling
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w800,
+            padding: EdgeInsets.symmetric(
+              horizontal: 40,
+            ), // 수평 방향으로 여백 넣기
+            child: Column(
+              // 본문 정렬
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // 여백 공간 넣기
+                SizedBox(
+                  height: 80,
+                ),
+                Row(
+                  // 수평 방향 정렬
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          'Hey, Selena',
+                          // text styling
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 28,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
-                      ),
-                      Text(
-                        'Welcome back',
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.5),
-                          fontSize: 18,
+                        Text(
+                          'Welcome back',
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.5),
+                            fontSize: 18,
+                          ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ]),
+                      ],
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 120,
+                ),
+                Text(
+                  'Total Balance',
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.white.withOpacity(0.8),
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  '\$5 194 482', // \를 붙여 $를 기호로 사용
+                  style: TextStyle(
+                    fontSize: 44,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                )
+              ],
+            ),
           )),
     );
   }
