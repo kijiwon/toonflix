@@ -28,90 +28,181 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       // 6. home 프로퍼티 설정
       home: Scaffold(
-          // 8. scaffold widget을 사용해 화면 구성
-          backgroundColor: const Color(0xFF181818), // custom color
-          body: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-            ), // 수평 방향으로 여백 넣기
-            child: Column(
-              // 본문 정렬
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // 여백 공간 넣기
-                const SizedBox(
-                  height: 80,
-                ),
-                Row(
-                  // 수평 방향 정렬
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        const Text(
-                          'Hey, Selena',
-                          // text styling
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 28,
-                            fontWeight: FontWeight.w800,
-                          ),
+        // 8. scaffold widget을 사용해 화면 구성
+        backgroundColor: const Color(0xFF181818), // custom color
+        body: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 10,
+          ), // 수평 방향으로 여백 넣기
+          child: Column(
+            // 본문 정렬
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // 여백 공간 넣기
+              const SizedBox(
+                height: 80,
+              ),
+              Row(
+                // 수평 방향 정렬
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      const Text(
+                        'Hey, Selena',
+                        // text styling
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 28,
+                          fontWeight: FontWeight.w800,
                         ),
-                        Text(
-                          'Welcome back',
-                          style: TextStyle(
-                            color: Colors.white.withOpacity(0.5),
-                            fontSize: 18,
-                          ),
+                      ),
+                      Text(
+                        'Welcome back',
+                        style: TextStyle(
+                          color: Colors.white.withOpacity(0.5),
+                          fontSize: 18,
                         ),
-                      ],
-                    )
-                  ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 120,
+              ),
+              Text(
+                'Total Balance',
+                style: TextStyle(
+                  fontSize: 22,
+                  color: Colors.white.withOpacity(0.8),
                 ),
-                const SizedBox(
-                  height: 120,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              const Text(
+                '\$5 194 482', // \를 붙여 $를 기호로 사용
+                style: TextStyle(
+                  fontSize: 44,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
-                Text(
-                  'Total Balance',
-                  style: TextStyle(
-                    fontSize: 22,
-                    color: Colors.white.withOpacity(0.8),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // button container 만들기
+                  Button(
+                    text: 'Transfer',
+                    bgColor: Color(0xFFF1B33B),
+                    textColor: Colors.black,
                   ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                const Text(
-                  '\$5 194 482', // \를 붙여 $를 기호로 사용
-                  style: TextStyle(
-                    fontSize: 44,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // button container 만들기
-                    Button(
-                      text: 'Transfer',
-                      bgColor: Color(0xFFF1B33B),
-                      textColor: Colors.black,
+                  Button(
+                    text: 'Request',
+                    bgColor: Color(0XFF1F2123),
+                    textColor: Colors.white,
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end, // 세로축 정렬
+                mainAxisAlignment: MainAxisAlignment.spaceBetween, // 가로축 정렬
+                children: [
+                  const Text(
+                    'Wallets',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 36,
+                      fontWeight: FontWeight.w600,
                     ),
-                    Button(
-                      text: 'Request',
-                      bgColor: Color(0XFF1F2123),
-                      textColor: Colors.white,
-                    )
-                  ],
-                )
-              ],
-            ),
-          )),
+                  ),
+                  Text(
+                    'View All',
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.8),
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                clipBehavior: Clip.hardEdge,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF1F2123),
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(25),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Euro',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 32,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              const Text(
+                                '6 428',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'EUR',
+                                style: TextStyle(
+                                  color: Colors.white.withOpacity(0.8),
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      Transform.scale(
+                        scale: 2.2,
+                        child: Transform.translate(
+                          offset: const Offset(-5, 10),
+                          child: const Icon(
+                            Icons.euro_symbol_rounded,
+                            color: Colors.white,
+                            size: 88,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
