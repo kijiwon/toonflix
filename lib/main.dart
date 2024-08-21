@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
             children: [
               // 여백 공간 넣기
               const SizedBox(
-                height: 80,
+                height: 70,
               ),
               Row(
                 // 수평 방향 정렬
@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 120,
+                height: 60,
               ),
               Text(
                 'Total Balance',
@@ -142,7 +142,22 @@ class MyApp extends StatelessWidget {
                 code: 'EUR',
                 amount: '6 428',
                 icon: Icons.euro_rounded,
-              )
+                isInverted: false,
+              ),
+              const CurrencyCard(
+                name: 'Bitcoin',
+                code: 'BTC',
+                amount: '9 785',
+                icon: Icons.currency_bitcoin,
+                isInverted: true,
+              ),
+              const CurrencyCard(
+                name: 'Dollar',
+                code: 'USD',
+                amount: '428',
+                icon: Icons.attach_money_outlined,
+                isInverted: false,
+              ),
             ],
           ),
         ),
