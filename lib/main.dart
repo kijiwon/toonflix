@@ -31,134 +31,142 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         // 8. scaffold widget을 사용해 화면 구성
         backgroundColor: const Color(0xFF181818), // custom color
-        body: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 10,
-          ), // 수평 방향으로 여백 넣기
-          child: Column(
-            // 본문 정렬
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // 여백 공간 넣기
-              const SizedBox(
-                height: 70,
-              ),
-              Row(
-                // 수평 방향 정렬
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      const Text(
-                        'Hey, Selena',
-                        // text styling
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                      Text(
-                        'Welcome back',
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.5),
-                          fontSize: 18,
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 60,
-              ),
-              Text(
-                'Total Balance',
-                style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.white.withOpacity(0.8),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10,
+            ), // 수평 방향으로 여백 넣기
+            child: Column(
+              // 본문 정렬
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // 여백 공간 넣기
+                const SizedBox(
+                  height: 60,
                 ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              const Text(
-                '\$5 194 482', // \를 붙여 $를 기호로 사용
-                style: TextStyle(
-                  fontSize: 44,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
+                Row(
+                  // 수평 방향 정렬
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        const Text(
+                          'Hey, Selena',
+                          // text styling
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 28,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        Text(
+                          'Welcome back',
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.5),
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // button container 만들기
-                  Button(
-                    text: 'Transfer',
-                    bgColor: Color(0xFFF1B33B),
-                    textColor: Colors.black,
+                const SizedBox(
+                  height: 40,
+                ),
+                Text(
+                  'Total Balance',
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.white.withOpacity(0.8),
                   ),
-                  Button(
-                    text: 'Request',
-                    bgColor: Color(0XFF1F2123),
-                    textColor: Colors.white,
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 100,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end, // 세로축 정렬
-                mainAxisAlignment: MainAxisAlignment.spaceBetween, // 가로축 정렬
-                children: [
-                  const Text(
-                    'Wallets',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 36,
-                      fontWeight: FontWeight.w600,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                const Text(
+                  '\$5 194 482', // \를 붙여 $를 기호로 사용
+                  style: TextStyle(
+                    fontSize: 44,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // button container 만들기
+                    Button(
+                      text: 'Transfer',
+                      bgColor: Color(0xFFF1B33B),
+                      textColor: Colors.black,
                     ),
-                  ),
-                  Text(
-                    'View All',
-                    style: TextStyle(
-                      color: Colors.white.withOpacity(0.8),
-                      fontSize: 18,
+                    Button(
+                      text: 'Request',
+                      bgColor: Color(0XFF1F2123),
+                      textColor: Colors.white,
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end, // 세로축 정렬
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween, // 가로축 정렬
+                  children: [
+                    const Text(
+                      'Wallets',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 36,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
+                    Text(
+                      'View All',
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const CurrencyCard(
+                  name: 'Euro',
+                  code: 'EUR',
+                  amount: '6 428',
+                  icon: Icons.euro_rounded,
+                  isInverted: false,
+                ),
+                Transform.translate(
+                  offset: const Offset(0, -20),
+                  child: const CurrencyCard(
+                    name: 'Bitcoin',
+                    code: 'BTC',
+                    amount: '9 785',
+                    icon: Icons.currency_bitcoin,
+                    isInverted: true,
                   ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const CurrencyCard(
-                name: 'Euro',
-                code: 'EUR',
-                amount: '6 428',
-                icon: Icons.euro_rounded,
-                isInverted: false,
-              ),
-              const CurrencyCard(
-                name: 'Bitcoin',
-                code: 'BTC',
-                amount: '9 785',
-                icon: Icons.currency_bitcoin,
-                isInverted: true,
-              ),
-              const CurrencyCard(
-                name: 'Dollar',
-                code: 'USD',
-                amount: '428',
-                icon: Icons.attach_money_outlined,
-                isInverted: false,
-              ),
-            ],
+                ),
+                Transform.translate(
+                  offset: const Offset(0, -40),
+                  child: const CurrencyCard(
+                    name: 'Dollar',
+                    code: 'USD',
+                    amount: '428',
+                    icon: Icons.attach_money_outlined,
+                    isInverted: false,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
