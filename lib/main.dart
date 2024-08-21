@@ -28,9 +28,9 @@ class MyApp extends StatelessWidget {
       // 6. home 프로퍼티 설정
       home: Scaffold(
           // 8. scaffold widget을 사용해 화면 구성
-          backgroundColor: Color(0xFF181818), // custom color
+          backgroundColor: const Color(0xFF181818), // custom color
           body: Padding(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: 40,
             ), // 수평 방향으로 여백 넣기
             child: Column(
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // 여백 공간 넣기
-                SizedBox(
+                const SizedBox(
                   height: 80,
                 ),
                 Row(
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(
+                        const Text(
                           'Hey, Selena',
                           // text styling
                           style: TextStyle(
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 120,
                 ),
                 Text(
@@ -78,16 +78,42 @@ class MyApp extends StatelessWidget {
                     color: Colors.white.withOpacity(0.8),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Text(
+                const Text(
                   '\$5 194 482', // \를 붙여 $를 기호로 사용
                   style: TextStyle(
                     fontSize: 44,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  children: [
+                    // button container 만들기
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.circular(45),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 20,
+                          horizontal: 50,
+                        ),
+                        child: Text(
+                          'Transfer',
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 )
               ],
             ),
