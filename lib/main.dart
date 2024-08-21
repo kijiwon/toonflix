@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toonfilx/widgets/Button.dart';
 
 class Player {
   // String 뒤에 ?를 붙여주면 아무 파라미터 없이도 생성자 함수를 만들 수 있음
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: const Color(0xFF181818), // custom color
           body: Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: 40,
+              horizontal: 10,
             ), // 수평 방향으로 여백 넣기
             child: Column(
               // 본문 정렬
@@ -92,27 +93,18 @@ class MyApp extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                Row(
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     // button container 만들기
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.amber,
-                        borderRadius: BorderRadius.circular(45),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 20,
-                          horizontal: 50,
-                        ),
-                        child: Text(
-                          'Transfer',
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                    )
+                    Button(
+                        text: 'Transfer',
+                        bgColor: Color(0xFFF1B33B),
+                        textColor: Colors.black),
+                    Button(
+                        text: 'Request',
+                        bgColor: const Color(0XFF1F2123),
+                        textColor: Colors.white)
                   ],
                 )
               ],
