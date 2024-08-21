@@ -98,13 +98,15 @@ class MyApp extends StatelessWidget {
                   children: [
                     // button container 만들기
                     Button(
-                        text: 'Transfer',
-                        bgColor: Color(0xFFF1B33B),
-                        textColor: Colors.black),
+                      text: 'Transfer',
+                      bgColor: Color(0xFFF1B33B),
+                      textColor: Colors.black,
+                    ),
                     Button(
-                        text: 'Request',
-                        bgColor: const Color(0XFF1F2123),
-                        textColor: Colors.white)
+                      text: 'Request',
+                      bgColor: Color(0XFF1F2123),
+                      textColor: Colors.white,
+                    )
                   ],
                 )
               ],
