@@ -22,26 +22,18 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(
+          backgroundColor: const Color(0xFFE7626C),
+        ),
         textTheme: const TextTheme(
-          titleLarge: TextStyle(
-            color: Colors.red,
+          displayLarge: TextStyle(
+            color: Color(0xFF232B55),
           ),
         ),
+        cardColor: const Color(0xFFF4EDDB),
       ),
-      home: Scaffold(
-        backgroundColor: const Color(0xFFF4EDDB), // custom color
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              showTitle ? const MyLargeTitle() : const Text('nothing'),
-              IconButton(
-                onPressed: toggleTitle,
-                icon: const Icon(Icons.remove_red_eye),
-              )
-            ],
-          ),
-        ),
+      home: const Scaffold(
+        body: Center(),
       ),
     );
   }
