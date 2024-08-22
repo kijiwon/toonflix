@@ -38,6 +38,14 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void onRestartPressed() {
+    setState(() {
+      totalSeconds = twentyFiveMinutes;
+    });
+    isRunning = false;
+    timer.cancel();
+  }
+
   void onStartPressed() {
     timer = Timer.periodic(
       const Duration(seconds: 1),
@@ -90,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   IconButton(
                       iconSize: 120,
                       color: Theme.of(context).cardColor,
-                      onPressed: () {},
+                      onPressed: onRestartPressed,
                       icon: const Icon(Icons.restore_rounded))
                 ],
               ),
