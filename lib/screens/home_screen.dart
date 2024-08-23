@@ -2,30 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:toonfilx/models/webtoon_model.dart';
 import 'package:toonfilx/services/api_service.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  List<WebtoonModel> webtoons = [];
-  bool isLoading = true;
-
-  void waitForWebToons() async {
-    // api요청
-    webtoons = await ApiService.getTodaysToons();
-    isLoading = false;
-    setState(() {}); // state 변경
-  }
-
-  // 첫 로딩 시 데이터 요청 보내기
-  @override
-  void initState() {
-    super.initState();
-    waitForWebToons();
-  }
+class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
+  Future<List<WebtoonModel>> webtoons = ApiService.getTodaysToons();
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +22,17 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.w600,
           ),
         ),
+      ),
+      body: FutureBuilder(
+        future: webtoons,
+        builder: (context, snapshot) {
+          // snapshot-> future의 상태를 알려줌
+          if (snapshot.hasData) {
+            // 데이터를 받아온 경우
+            return Text('There is data');
+          }
+          return Text('Loading...');
+        },
       ),
     );
   }
