@@ -4,7 +4,7 @@ import 'package:toonfilx/services/api_service.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  Future<List<WebtoonModel>> webtoons = ApiService.getTodaysToons();
+  final Future<List<WebtoonModel>> webtoons = ApiService.getTodaysToons();
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +29,9 @@ class HomeScreen extends StatelessWidget {
           // snapshot-> future의 상태를 알려줌
           if (snapshot.hasData) {
             // 데이터를 받아온 경우
-            return Text('There is data');
+            return const Text('There is data');
           }
-          return Text('Loading...');
+          return const Text('Loading...');
         },
       ),
     );
