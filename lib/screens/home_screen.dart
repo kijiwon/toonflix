@@ -29,7 +29,17 @@ class HomeScreen extends StatelessWidget {
           // snapshot-> future의 상태를 알려줌
           if (snapshot.hasData) {
             // 데이터를 받아온 경우
-            return makeList(snapshot);
+            return Column(
+              children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                Expanded(
+                  // Expanded로 감싸 List의 길이를 적당하게 넣어주기
+                  child: makeList(snapshot),
+                ),
+              ],
+            );
           }
           return const Center(
             child: CircularProgressIndicator(),
@@ -41,16 +51,31 @@ class HomeScreen extends StatelessWidget {
 
   ListView makeList(AsyncSnapshot<List<WebtoonModel>> snapshot) {
     return ListView.separated(
-            scrollDirection: Axis.horizontal, // 가로 스크롤
-            itemCount: snapshot.data!.length,
-            itemBuilder: (context, index) {
-              var webtoon = snapshot.data![index]; // item의 index에 접근해 build
-              print(index); // index를 찍어보면 하나씩 추가됨
-              return Text(webtoon.title);
-            },
-            separatorBuilder: (context, index) => const SizedBox(
-              width: 20,
+      scrollDirection: Axis.horizontal, // 가로 스크롤
+      itemCount: snapshot.data!.length,
+      itemBuilder: (context, index) {
+        var webtoon = snapshot.data![index]; // item의 index에 접근해 build
+        print(index); // index를 찍어보면 하나씩 추가됨
+        return Column(
+          children: [
+            Container(
+              width: 250,
+              child: Image.network(
+                webtoon.thumb,
+
+                // 이미지 표시 오류 해결
+                headers: const {
+                  'Referer': 'https://comic.naver.com',
+                },
+              ),
             ),
-          );
+            Text(webtoon.title),
+          ],
+        );
+      },
+      separatorBuilder: (context, index) => const SizedBox(
+        width: 40,
+      ),
+    );
   }
 }
