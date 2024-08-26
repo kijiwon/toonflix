@@ -22,30 +22,35 @@ class Webtoon extends StatelessWidget {
               thumb: thumb,
               id: id,
             ),
+            // screen 아래서부터 가져오기
+            fullscreenDialog: true,
           ),
         );
       },
       child: Column(
         children: [
-          Container(
-            width: 250,
-            clipBehavior: Clip.hardEdge, // 자식의 부모 영역 침범 해결
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 15,
-                    offset: const Offset(10, 10),
-                    color: Colors.black.withOpacity(0.5),
-                  ),
-                ]),
-            child: Image.network(
-              thumb,
+          Hero(
+            tag: id, // detailScreen과 동일한 tag
+            child: Container(
+              width: 250,
+              clipBehavior: Clip.hardEdge, // 자식의 부모 영역 침범 해결
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 15,
+                      offset: const Offset(10, 10),
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                  ]),
+              child: Image.network(
+                thumb,
 
-              // 이미지 표시 오류 해결
-              headers: const {
-                'Referer': 'https://comic.naver.com',
-              },
+                // 이미지 표시 오류 해결
+                headers: const {
+                  'Referer': 'https://comic.naver.com',
+                },
+              ),
             ),
           ),
           const SizedBox(
