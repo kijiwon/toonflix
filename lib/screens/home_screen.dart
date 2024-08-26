@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
           // snapshot-> future의 상태를 알려줌
           if (snapshot.hasData) {
             // 데이터를 받아온 경우
-            return ListView.builder(
+            return ListView.separated(
               scrollDirection: Axis.horizontal, // 가로 스크롤
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
@@ -37,6 +37,9 @@ class HomeScreen extends StatelessWidget {
                 print(index); // index를 찍어보면 하나씩 추가됨
                 return Text(webtoon.title);
               },
+              separatorBuilder: (context, index) => SizedBox(
+                width: 20,
+              ),
             );
           }
           return const Center(
