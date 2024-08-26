@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toonfilx/screens/detail_screen.dart';
 
 class Webtoon extends StatelessWidget {
   final String title, thumb, id;
@@ -11,39 +12,53 @@ class Webtoon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 250,
-          clipBehavior: Clip.hardEdge, // 자식의 부모 영역 침범 해결
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 15,
-                  offset: const Offset(10, 10),
-                  color: Colors.black.withOpacity(0.5),
-                ),
-              ]),
-          child: Image.network(
-            thumb,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailScreen(
+              title: title,
+              thumb: thumb,
+              id: id,
+            ),
+          ),
+        );
+      },
+      child: Column(
+        children: [
+          Container(
+            width: 250,
+            clipBehavior: Clip.hardEdge, // 자식의 부모 영역 침범 해결
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 15,
+                    offset: const Offset(10, 10),
+                    color: Colors.black.withOpacity(0.5),
+                  ),
+                ]),
+            child: Image.network(
+              thumb,
 
-            // 이미지 표시 오류 해결
-            headers: const {
-              'Referer': 'https://comic.naver.com',
-            },
+              // 이미지 표시 오류 해결
+              headers: const {
+                'Referer': 'https://comic.naver.com',
+              },
+            ),
           ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 22,
+          const SizedBox(
+            height: 10,
           ),
-        ),
-      ],
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 22,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
