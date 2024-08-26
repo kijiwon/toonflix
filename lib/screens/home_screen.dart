@@ -29,9 +29,19 @@ class HomeScreen extends StatelessWidget {
           // snapshot-> future의 상태를 알려줌
           if (snapshot.hasData) {
             // 데이터를 받아온 경우
-            return const Text('There is data');
+            return ListView.builder(
+              scrollDirection: Axis.horizontal, // 가로 스크롤
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                var webtoon = snapshot.data![index]; // item의 index에 접근해 build
+                print(index); // index를 찍어보면 하나씩 추가됨
+                return Text(webtoon.title);
+              },
+            );
           }
-          return const Text('Loading...');
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         },
       ),
     );
