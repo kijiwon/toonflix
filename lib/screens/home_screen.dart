@@ -53,6 +53,10 @@ class HomeScreen extends StatelessWidget {
     return ListView.separated(
       scrollDirection: Axis.horizontal, // 가로 스크롤
       itemCount: snapshot.data!.length,
+      padding: const EdgeInsets.symmetric(
+        vertical: 10,
+        horizontal: 20,
+      ),
       itemBuilder: (context, index) {
         var webtoon = snapshot.data![index]; // item의 index에 접근해 build
         print(index); // index를 찍어보면 하나씩 추가됨
@@ -60,6 +64,16 @@ class HomeScreen extends StatelessWidget {
           children: [
             Container(
               width: 250,
+              clipBehavior: Clip.hardEdge, // 자식의 부모 영역 침범 해결
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 15,
+                      offset: const Offset(10, 10),
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                  ]),
               child: Image.network(
                 webtoon.thumb,
 
@@ -69,7 +83,15 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
             ),
-            Text(webtoon.title),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              webtoon.title,
+              style: TextStyle(
+                fontSize: 22,
+              ),
+            ),
           ],
         );
       },
