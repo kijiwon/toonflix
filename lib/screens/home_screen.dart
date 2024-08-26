@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toonfilx/models/webtoon_model.dart';
 import 'package:toonfilx/services/api_service.dart';
+import 'package:toonfilx/widgets/webtoon_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -60,39 +61,10 @@ class HomeScreen extends StatelessWidget {
       itemBuilder: (context, index) {
         var webtoon = snapshot.data![index]; // item의 index에 접근해 build
         print(index); // index를 찍어보면 하나씩 추가됨
-        return Column(
-          children: [
-            Container(
-              width: 250,
-              clipBehavior: Clip.hardEdge, // 자식의 부모 영역 침범 해결
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 15,
-                      offset: const Offset(10, 10),
-                      color: Colors.black.withOpacity(0.5),
-                    ),
-                  ]),
-              child: Image.network(
-                webtoon.thumb,
-
-                // 이미지 표시 오류 해결
-                headers: const {
-                  'Referer': 'https://comic.naver.com',
-                },
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              webtoon.title,
-              style: TextStyle(
-                fontSize: 22,
-              ),
-            ),
-          ],
+        return Webtoon(
+          title: webtoon.title,
+          thumb: webtoon.thumb,
+          id: webtoon.id,
         );
       },
       separatorBuilder: (context, index) => const SizedBox(
