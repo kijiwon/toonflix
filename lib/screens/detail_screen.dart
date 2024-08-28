@@ -1,13 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:toonfilx/models/webtoon_detail_model.dart';
+import 'package:toonfilx/models/webtoon_episode_model.dart';
+import 'package:toonfilx/services/api_service.dart';
 
-class DetailScreen extends StatelessWidget {
+class DetailScreen extends StatefulWidget {
   final String title, thumb, id;
+
   const DetailScreen({
     super.key,
     required this.title,
     required this.thumb,
     required this.id,
   });
+
+  @override
+  State<DetailScreen> createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+  late Future<WebtoonDetailModel> webtoon;
+  late Future<List<WebtoonEpisodeModel>> episodes;
+
+  @override
+  void initState() {
+    super.initState();
+    webtoon = ApiService.getToonById(widget.id);
+    episodes = ApiService.getLatestEpisodes(widget.id);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +38,7 @@ class DetailScreen extends StatelessWidget {
         surfaceTintColor: Colors.white,
         foregroundColor: Colors.green,
         title: Text(
-          title,
+          widget.title,
           style: const TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.w600,
@@ -35,7 +54,7 @@ class DetailScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Hero(
-                tag: id, // webtoon widget과 동일한 tag
+                tag: widget.id, // webtoon widget과 동일한 tag
                 child: Container(
                   width: 250,
                   clipBehavior: Clip.hardEdge, // 자식의 부모 영역 침범 해결
@@ -49,7 +68,7 @@ class DetailScreen extends StatelessWidget {
                         ),
                       ]),
                   child: Image.network(
-                    thumb,
+                    widget.thumb,
 
                     // 이미지 표시 오류 해결
                     headers: const {
