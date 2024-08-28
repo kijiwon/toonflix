@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
       ),
       itemBuilder: (context, index) {
         var webtoon = snapshot.data![index]; // item의 index에 접근해 build
-        print(index); // index를 찍어보면 하나씩 추가됨
+        // print(index); // index를 찍어보면 하나씩 추가됨
         return Webtoon(
           title: webtoon.title,
           thumb: webtoon.thumb,
