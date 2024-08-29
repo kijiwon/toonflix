@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toonfilx/models/webtoon_detail_model.dart';
 import 'package:toonfilx/models/webtoon_episode_model.dart';
 import 'package:toonfilx/services/api_service.dart';
@@ -22,17 +23,59 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   late Future<WebtoonDetailModel> webtoon;
   late Future<List<WebtoonEpisodeModel>> episodes;
+  bool isLiked = false;
+
+  // 좋아요를 누른 id 리스트
+  late SharedPreferences prefs;
 
   @override
   void initState() {
     super.initState();
-    print('id ${widget.id}');
     webtoon = ApiService.getToonById(widget.id);
     episodes = ApiService.getLatestEpisodes(widget.id);
+    initPrefs();
+  }
+
+  Future initPrefs() async {
+    // 인스턴스 생성
+    prefs = await SharedPreferences.getInstance();
+    // 좋아요를 누른 웹툰 리스트 가져오기
+    final likedToons = prefs.getStringList('likedToons');
+    if (likedToons != null) {
+      if (likedToons.contains(widget.id) == true) {
+        setState(() {
+          isLiked = true;
+        });
+      }
+    } else {
+      // 좋아요를 한 번도 안누른 경우 null 처리
+      prefs.setStringList('likedToons', []);
+    }
+    print('before $likedToons');
+  }
+
+  onHeartTap() async {
+    final likedToons = prefs.getStringList('likedToons');
+    if (likedToons != null) {
+      // 이미 초기에 null 처리를 하기 때문에 null일 수는 없지만 한 번더 체크
+      if (likedToons.contains(widget.id) == true && isLiked) {
+        likedToons.remove(widget.id);
+      } else {
+        likedToons.add(widget.id);
+      }
+      // 동작이 완료되면 다시 저장하기
+      await prefs.setStringList('likedToons', likedToons);
+      setState(() {
+        // state 변경하기
+        isLiked = !isLiked;
+      });
+      print('after $likedToons');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    print(isLiked);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -40,6 +83,16 @@ class _DetailScreenState extends State<DetailScreen> {
         shadowColor: Colors.black,
         surfaceTintColor: Colors.white,
         foregroundColor: Colors.green,
+        actions: [
+          IconButton(
+            onPressed: onHeartTap,
+            icon: Icon(
+              isLiked
+                  ? Icons.favorite_outlined
+                  : Icons.favorite_outline_outlined,
+            ),
+          ),
+        ],
         title: Text(
           widget.title,
           style: const TextStyle(
